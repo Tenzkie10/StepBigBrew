@@ -5,8 +5,10 @@ const hero = () => {
         <>
         <div className='main'>
             <img className='bg_img' src={backgroundimg}></img>
-            <div className='absolute w-10 h-10'>Hallo Brother
-
+            <div className='overlay'>
+            <div className='content'><b>Making Every Sip A Step <br></br>In The Right Direction!</b>
+            <button className='order-button'><b>Order Now!</b></button>
+            </div>
             </div>
         </div>
         
