@@ -16,8 +16,8 @@ app.get('/', (re, res)=> {
     return res.json("Running...");
 })
 
-app.get('/orders', (req, res) => {
-    const sql = "SELECT * FROM orders"
+app.get('/order_invoice', (req, res) => {
+    const sql = "SELECT * FROM order_invoice"
 })
 
 app.listen(8081, ()=> {
