@@ -1,6 +1,3 @@
-import { AiOutlineClose } from 'react-icons/ai';
-import { HiMenuAlt1 } from 'react-icons/hi';
-import { useState } from 'react';
 import { Link } from "react-router-dom";
 import Logo from '../images/stepbigbrew_logo.png';
 
