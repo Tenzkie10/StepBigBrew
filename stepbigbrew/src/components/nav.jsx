@@ -14,7 +14,7 @@ const nav = () => {
                     
                 </div>    
                     <div className='nav-options'>
-                        <CustomLink to="/home" className="  hover:text-orange">Home</CustomLink>
+                        <CustomLink to="/home" className=" hover:text-orange">Home</CustomLink>
                         <CustomLink to="/about" className="">About</CustomLink>
                         <CustomLink to="/menu" className="">Menu</CustomLink>
                         <CustomLink to="/contact" className="">Contact Us</CustomLink>

@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* Navigation Bar */
 .nav-options {
     color: #fff7f7;
     font-size: 24px;
@@ -9,22 +9,7 @@
     
 }
 
-.about-page {
-    background-color: #1F3832;
-    width: 100%;
-    height: 100vh;
-}
-
-.about-text{
-    font-family: 'Inter',Helvetica;
-    font-size: 80px;
-    color: #fff7f7;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(40% - 100px); 
-}
+/* Homepage */
 .main{
     width: 100%;
     height: 100vh;
@@ -48,6 +33,7 @@
     font-family: 'Inter',Helvetica;
     color: #fff7f7;
     font-size: 80px;  
+    
 }
 
 .overlay {
@@ -75,4 +61,105 @@
   border: solid 3px;
   border-color: #fff7f7;
   border-radius: 20px;
+}
+
+.order-button:hover {background-color: #f28705}
+
+.order-button:active{
+    transform: translateY(4px);
+}
+/* About Page */
+.about-page {
+    background-color: #1F3832;
+    width: 100%;
+    height: 100vh;
+}
+
+.about-text{
+    font-family: 'Inter', Helvetica;
+    font-size: 96px;
+    color: #fff7f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(40% - 200px); 
+}
+
+.a_image1 {
+    position: absolute;
+    left: 50px;
+    top: 400px;
+    width: 50%;
+    height: 50%;
+    border-radius: 20px;
+    border: solid 1px;
+}
+.a_image2 {
+    position: absolute;
+    left: 50px;
+    top: 900px;
+    width: 330px;
+    height: 190px;
+    border-radius: 20px;
+    border: solid 1px;
+}
+.a_image3 {
+    position: absolute;
+    left: 400px;
+    top: 900px;
+    width: 230px;
+    height: 190px;
+    border-radius: 20px;
+    border: solid 1px;
+}
+.a_image4 {
+    position: absolute;
+    left: 650px;
+    top: 900px;
+    width: 330px;
+    height: 190px;
+    border-radius: 20px;
+    border: solid 1px;
+}
+
+.a_overlay {
+    position: absolute;
+    top: 220px;
+    left: 1000px;
+    background-color: #171717;
+    opacity: 0.8;
+    border-radius: 20px;
+    margin: 180px;
+    padding: 20px;
+    justify: center;
+}
+
+.about_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inter',Helvetica;
+    color: #fff7f7;
+    font-size: 19px;
+}
+
+/* Menu Page */
+
+.menu-page {
+    background-color: #1F3832;
+    width: 100%;
+    height: 100vh;
+}
+
+.menu-text{
+    font-family: 'Inter', Helvetica;
+    font-size: 96px;
+    color: #fff7f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(40% - 200px); 
 }
