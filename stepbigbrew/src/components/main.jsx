@@ -4,7 +4,7 @@ import About from './about';
 import Menu from './menu';
 import Contact from './contact';
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 const main = () => {
     return (
@@ -12,6 +12,7 @@ const main = () => {
                 <Nav/>
                 
                 <Routes>
+                    <Route path="/" element={<Navigate to="/home" />} />
                     <Route path="/home" element={<Home/>}/>
                     <Route path="/about" element={<About/>}/>
                     <Route path="/menu" element={<Menu/>}/>

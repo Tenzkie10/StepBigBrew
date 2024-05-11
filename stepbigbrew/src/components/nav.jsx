@@ -5,7 +5,7 @@ const nav = () => {
 
     return (
         <>
-            <div className="flex items-center justify-between p-5 lg:flex-row text-white">
+            <nav className="flex items-center justify-between p-5 lg:flex-row text-white">
                 <div>
                     <Link to="/home" className='hover:text-orange px-5 py-2 text-xl'>
                     <img class="object-scale-down h-50 w-60"src={Logo} alt="StepBigBrew Logo"/>  
@@ -14,15 +14,13 @@ const nav = () => {
                     
                 </div>    
                     <div className='nav-options'>
-                        <CustomLink to="/home" className=" hover:text-orange">Home</CustomLink>
-                        <CustomLink to="/about" className="">About</CustomLink>
-                        <CustomLink to="/menu" className="">Menu</CustomLink>
-                        <CustomLink to="/contact" className="">Contact Us</CustomLink>
+                        <CustomLink to="/home">Home</CustomLink>
+                        <CustomLink to="/about">About</CustomLink>
+                        <CustomLink to="/menu">Menu</CustomLink>
+                        <CustomLink to="/contact">Contact Us</CustomLink>
                     </div>
-                </div>
-            
-            
-            
+                </nav>
+                        
         </>
     )
 }

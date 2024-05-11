@@ -8,7 +8,13 @@
     font-family:'Inter-Regular',Helvetica;
     
 }
-
+/* Footer */
+.footer-sbb{
+    color: #fff7f7;
+    font-size: 24px;
+    font-family:'Inter-Regular',Helvetica;
+    text-align: center;
+}
 /* Homepage */
 .main{
     width: 100%;

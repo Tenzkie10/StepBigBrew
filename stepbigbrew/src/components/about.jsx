@@ -7,7 +7,7 @@ export default function about(){
     return (
         <>
             <div className="about-page">
-                <div className="about-text"><b><u>ABOUT US</u></b></div>
+                <div className="about-text"><b>ABOUT US</b></div>
                 <img className='a_image1' src={img1} alt="a_img1"></img>
                 
                 <img className='a_image2' src={img2} alt="a_img2"></img>
