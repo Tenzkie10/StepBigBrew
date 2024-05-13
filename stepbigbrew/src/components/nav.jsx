@@ -1,19 +1,8 @@
 import { Link } from "react-router-dom";
-import { AiOutlineClose } from 'react-icons/ai';
-import { HiMenuAlt1 } from "react-icons/hi";
-import { useState } from "react";
 import Logo from '../images/stepbigbrew_logo.png';
 
 const nav = () => {
 
-    const [toggle, setToggle] = useState(false);
-
-    function openMenu(){
-        setToggle(true);
-    }
-    function closeMenu(){
-        setToggle(false);
-    }
     return (
         <>
             <nav className="flex items-center justify-between p-5 lg:flex-row text-white">
@@ -30,11 +19,6 @@ const nav = () => {
                         <CustomLink to="/menu">Menu</CustomLink>
                         <CustomLink to="/contact">Contact Us</CustomLink>
                     </div>
-                <div className="ssm:block lg:hidden">
-                    {toggle ? (<AiOutlineClose onClick={closeMenu} size={30} className="text-white"></AiOutlineClose>):
-                    (<HiMenuAlt1 onClick={openMenu} size={30} className="text-white"/>)}
-                    
-                </div>
 
                
                 </nav>
