@@ -5,7 +5,7 @@ const nav = () => {
 
     return (
         <>
-            <nav className="flex items-center justify-between p-5 lg:flex-row text-white">
+            <nav className='flex items-center justify-between p-5 lg:flex-row text-white'>
                 <div>
                     <Link to="/home" className='hover:text-orange px-5 py-2 text-xl'>
                     <img class="object-scale-down h-50 w-60"src={Logo} alt="StepBigBrew Logo"/>  
@@ -23,7 +23,7 @@ const nav = () => {
                
                 </nav>
                 <div className="flex justify-between ml-10">
-                    <ul className="text-white text-xl mb-2 ssm:block lg:hidden">
+                    <ul className="menus ssm:block lg:hidden">
                         <li><CustomLink to="/home">Home</CustomLink></li>
                         <li><CustomLink to="/about">About</CustomLink></li>
                         <li><CustomLink to="/menu">Menu</CustomLink></li>

@@ -8,7 +8,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 
 const main = () => {
     return (
-       <>       <div className="bg-neutral">
+       <>       <div className='bg-neutral'>
                 <Nav/>
                 
                 <Routes>
