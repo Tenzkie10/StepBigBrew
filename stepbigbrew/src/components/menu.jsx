@@ -71,7 +71,7 @@ export default function Menu() {
                 <div className="modal" onClick={toggleModal}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <div className="modal-header">
-                            <h2>Cart</h2>
+                            <h2>My Cart</h2>
                             <button className="close-button" onClick={toggleModal}>&times;</button>
                         </div>
                         <ul>
