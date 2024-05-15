@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import m_img1 from '../images/black_coffee.jpg';
 import m_img2 from '../images/caf_latte.jpg';
 import m_img3 from '../images/caffemocha.jpg';
@@ -85,6 +86,9 @@ export default function Menu() {
                             <button className='close-button' onClick={toggleModal}>&times;</button>
                         </div>
                         <br></br>
+                        {cartItems.length === 0 ? (
+                            <h1><b>No items in the cart.</b></h1>
+                        ) : (
                         <ul>
                             {cartItems.map((item, index) => (
                                 <li key={index} className='cart-item'>
@@ -95,8 +99,12 @@ export default function Menu() {
                                 
                             ))}
                         </ul>
-                        <div className='total'>Total: P{calculateTotal()}
-                            <button className='place-order-button'>Place Order</button>
+                        )}
+                        <div className='total'><hr></hr>Total: P{calculateTotal()}
+                            <Link to="/order">
+                                <button className='place-order-button'>Place Order</button>
+                            </Link>
+                            
                         </div>
                     </div>
                 </div>

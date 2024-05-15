@@ -1,5 +1,4 @@
 
 
-export default function order() { 
-
+export default function Order() {
 }

@@ -289,9 +289,14 @@
 
 .close-button {
     background: none;
+    color: black;
     border: none;
     font-size: 1.5em;
     cursor: pointer;
+}
+
+.close-button:hover {
+    background: white;
 }
 
 .cart-item {
@@ -356,6 +361,10 @@
     float: right; 
 }
 
+.remove-button:hover {
+    background-color: #991b1b;
+}
+
 .place-order-button:hover {
     background-color: #45a049;
 }
@@ -418,5 +427,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #fb923c;
 }
