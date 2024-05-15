@@ -13,7 +13,7 @@ const nav = () => {
                     
                     
                 </div>    
-                    <div className='nav-options ssm:hidden lg:block lg:flex-col'>
+                    <div className='nav-options ssm:hidden lg:block lg:flex-col px-5'>
                         <CustomLink to="/home">Home</CustomLink>
                         <CustomLink to="/about">About</CustomLink>
                         <CustomLink to="/menu">Menu</CustomLink>
