@@ -17,7 +17,7 @@ app.get('/', (re, res)=> {
 })
 
 app.get('/order_invoice', (req, res) => {
-    const sql = "SELECT * FROM order_invoice"
+    const sql = "SELECT * FROM customer_contacts"
 })
 
 app.listen(8081, ()=> {

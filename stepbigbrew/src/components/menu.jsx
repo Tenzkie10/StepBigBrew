@@ -21,6 +21,12 @@ export default function Menu() {
         showNotification(`${item.name} added to cart`);
     };
 
+    const removeFromCart = (index) => {
+        const newCartItems = [...cartItems];
+        newCartItems.splice(index, 1);
+        setCartItems(newCartItems);
+    };
+
     const toggleModal = () => {
         setShowModal(!showModal);
     };
@@ -31,19 +37,23 @@ export default function Menu() {
             setNotification('');
         }, 3000);
     };
+    
+    const calculateTotal = () => {
+        return cartItems.reduce((total, item) => total + item.price, 0);
+    };
 
     const coffeeItems = [
-        { id: 'bcoffee', name: 'Black Coffee', img: m_img1 },
-        { id: 'clatte', name: 'Caffe Latte', img: m_img2 },
-        { id: 'cmocha', name: 'Caffee Mocha', img: m_img3 },
-        { id: 'cchino', name: 'Capochino', img: m_img4 },
-        { id: 'cmacch', name: 'Caramel Macchiato', img: m_img5 },
-        { id: 'econpan', name: 'Espresso con panna', img: m_img6 },
-        { id: 'emacchi', name: 'Espresso Macchiato', img: m_img7 },
-        { id: 'espre', name: 'Espresso', img: m_img8 },
-        { id: 'fwhite', name: 'Flat White', img: m_img9 },
-        { id: 'icame', name: 'Iced Caffe Americano', img: m_img10 },
-        { id: 'wcmo', name: 'White Chocolate Mocha', img: m_img11 },
+        { id: 'bcoffee', name: 'Black Coffee', img: m_img1, price: 50 },
+        { id: 'clatte', name: 'Caffe Latte', img: m_img2, price: 60 },
+        { id: 'cmocha', name: 'Caffee Mocha', img: m_img3, price: 50 },
+        { id: 'cchino', name: 'Capochino', img: m_img4, price: 55 },
+        { id: 'cmacch', name: 'Caramel Macchiato', img: m_img5, price: 60 },
+        { id: 'econpan', name: 'Espresso con panna', img: m_img6, price: 70 },
+        { id: 'emacchi', name: 'Espresso Macchiato', img: m_img7, price: 55 },
+        { id: 'espre', name: 'Espresso', img: m_img8, price: 60 },
+        { id: 'fwhite', name: 'Flat White', img: m_img9, price: 80 },
+        { id: 'icame', name: 'Iced Caffe Americano', img: m_img10, price: 75 },
+        { id: 'wcmo', name: 'White Chocolate Mocha', img: m_img11, price: 70 },
     ];
 
     return (
@@ -68,17 +78,26 @@ export default function Menu() {
                 🛒
             </div>
             {showModal && (
-                <div className="modal" onClick={toggleModal}>
-                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <h2>My Cart</h2>
-                            <button className="close-button" onClick={toggleModal}>&times;</button>
+                <div className='modal' onClick={toggleModal}>
+                    <div className='modal-content' onClick={(e) => e.stopPropagation()}>
+                        <div className='modal-header'>
+                            <h1><b>My Cart</b></h1>
+                            <button className='close-button' onClick={toggleModal}>&times;</button>
                         </div>
+                        <br></br>
                         <ul>
                             {cartItems.map((item, index) => (
-                                <li key={index}>{item.name}</li>
+                                <li key={index} className='cart-item'>
+                                    <img src={item.img} alt={item.name} className='cart-item-img' />
+                                    {item.name} - P{item.price}
+                                    <button className='remove-button' onClick={() => removeFromCart(index)}>Remove</button>
+                                </li>
+                                
                             ))}
                         </ul>
+                        <div className='total'>Total: P{calculateTotal()}
+                            <button className='place-order-button'>Place Order</button>
+                        </div>
                     </div>
                 </div>
             )}
