@@ -1,25 +1,34 @@
-const express = require('express')
-const mysql = require('mysql')
-const cors = require('cors')
+const mysql = require('mysql');
 
-const app = express()
-app.use(cors())
-
-const db = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
     user: 'root',
     password: '',
     database: 'stepbigbrew'
+});
 
-})
-app.get('/', (re, res)=> {
-    return res.json("Running...");
-})
+connection.connect(function(err){
+    if(err){
+        console.error("Error connecting: " + err.stack);
+        return;
+    }
+    console.log("Connected as id " + connection.threadId);
+});
 
-app.get('/order_invoice', (req, res) => {
-    const sql = "SELECT * FROM customer_contacts"
-})
+const query = "SELECT * FROM customer_contacts";
 
-app.listen(8081, ()=> {
-    console.log("listening");
-})
+connection.query(query, function(err, rows, fields) {
+    if(err){
+        console.error("An error occurred with the query: " + err);
+        return;
+    }
+    console.log("Query successfully executed", rows);
+});
+
+connection.end(function(err){
+    if(err){
+        console.error("Error closing connection: " + err.stack);
+        return;
+    }
+    console.log("Connection closed");
+});

@@ -76,7 +76,7 @@ export default function Menu() {
         { id: 'icame', name: 'Iced Caffe Americano', img: m_img10, price: 75 },
         { id: 'wcmo', name: 'White Chocolate Mocha', img: m_img11, price: 70 },
     ];
-
+    
     return (
         <>
             <div className="menu-page lg:flex-row">
@@ -124,7 +124,7 @@ export default function Menu() {
                         </ul>
                         )}
                         <div className='total'><hr></hr>Total: P{calculateTotal()}
-                            <Link to="/order">
+                            <Link to={{ pathname: "/order", state: { cartItems: cartItems } }}>
                                 <button className='place-order-button'>Place Order</button>
                             </Link>
                             
@@ -142,6 +142,7 @@ export default function Menu() {
             <footer className='footer-sbb bg-neutral text-white text-center lg:text-center'>
                 <p>© 2024 Step BigBrew</p>
             </footer>
+            
         </>
     );
 }
