@@ -1,70 +1,97 @@
-import m_img1 from '../images/black_coffee.jpg'
-import m_img2 from '../images/caf_latte.jpg'
-import m_img3 from '../images/caffemocha.jpg'
-import m_img4 from '../images/capc.jpg'
-import m_img5 from '../images/car_mac.jpg'
-import m_img6 from '../images/espreconpan.jpg'
-import m_img7 from '../images/espremachi.jpg'
-import m_img8 from '../images/esspresso.jpg'
-import m_img9 from '../images/flatwhite.jpg'
-import m_img10 from '../images/icecafam.jpg'
-import m_img11 from '../images/whitechocmo.jpg'
+import React, { useState } from 'react';
+import m_img1 from '../images/black_coffee.jpg';
+import m_img2 from '../images/caf_latte.jpg';
+import m_img3 from '../images/caffemocha.jpg';
+import m_img4 from '../images/capc.jpg';
+import m_img5 from '../images/car_mac.jpg';
+import m_img6 from '../images/espreconpan.jpg';
+import m_img7 from '../images/espremachi.jpg';
+import m_img8 from '../images/esspresso.jpg';
+import m_img9 from '../images/flatwhite.jpg';
+import m_img10 from '../images/icecafam.jpg';
+import m_img11 from '../images/whitechocmo.jpg';
 
-export default function menu(){
+export default function Menu() {
+    const [cartItems, setCartItems] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [notification, setNotification] = useState('');
+
+    const addToCart = (item) => {
+        setCartItems([...cartItems, item]);
+        showNotification(`${item.name} added to cart`);
+    };
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
+    const showNotification = (message) => {
+        setNotification(message);
+        setTimeout(() => {
+            setNotification('');
+        }, 3000);
+    };
+
+    const coffeeItems = [
+        { id: 'bcoffee', name: 'Black Coffee', img: m_img1 },
+        { id: 'clatte', name: 'Caffe Latte', img: m_img2 },
+        { id: 'cmocha', name: 'Caffee Mocha', img: m_img3 },
+        { id: 'cchino', name: 'Capochino', img: m_img4 },
+        { id: 'cmacch', name: 'Caramel Macchiato', img: m_img5 },
+        { id: 'econpan', name: 'Espresso con panna', img: m_img6 },
+        { id: 'emacchi', name: 'Espresso Macchiato', img: m_img7 },
+        { id: 'espre', name: 'Espresso', img: m_img8 },
+        { id: 'fwhite', name: 'Flat White', img: m_img9 },
+        { id: 'icame', name: 'Iced Caffe Americano', img: m_img10 },
+        { id: 'wcmo', name: 'White Chocolate Mocha', img: m_img11 },
+    ];
+
     return (
         <>
-        <div className="menu-page lg:flex-row">
-            <div className="menu-text"><b>MENU</b></div>
+            <div className="menu-page lg:flex-row">
+                <div className="menu-text"><b>MENU</b></div>
+
+                {/* Coffee */}
                 <div className='coffee-container'>
-                    <label className='coffee-label' id='bcoffee'>
-                        <img src={m_img1} alt='black coffee'></img>
-                        Black Coffee
-                    </label>
-                    <label className='coffee-label' id='clatte'>
-                        <img src={m_img2} alt='caffe latte'></img>
-                        Caffe Latte
-                    </label>
-                    <label className='coffee-label' id='cmocha'>
-                        <img src={m_img3} alt='caffee mocha'></img>
-                        Caffee Mocha
-                    </label>
-                    <label className='coffee-label' id='cchino'>
-                        <img src={m_img4} alt='capochino'></img>
-                        Capochino
-                    </label>
-                    <label className='coffee-label' id='cmacch'>
-                        <img src={m_img5} alt='caramel macchiato'></img>
-                        Caramel Macchiato
-                    </label>
-                    <label className='coffee-label' id='econpan'>
-                        <img src={m_img6} alt='espressoconpanna'></img>
-                        Espresso con panna
-                    </label>
-                    <label className='coffee-label' id='emacchi'>
-                        <img src={m_img7} alt='espressomacchiato'></img>
-                        Espresso Macchiato
-                    </label>
-                    <label className='coffee-label' id='espre'>
-                        <img src={m_img8} alt='espresso'></img>
-                        Espresso
-                    </label>
-                    <label className='coffee-label' id='fwhite'>
-                        <img src={m_img9} alt='flatwhite'></img>
-                        Flate White
-                    </label>
-                    <label className='coffee-label' id='icame'>
-                        <img src={m_img10} alt='coldbrewcoffee'></img>
-                        Iced Caffe Americano
-                    </label>
-                    <label className='coffee-label' id='wcmo'>
-                        <img src={m_img11} alt='whitechocolatemocha'></img>
-                        White Chocolate Mocha
-                    </label>
+                    {coffeeItems.map(item => (
+                        <label key={item.id} className='coffee-label' onClick={() => addToCart(item)}>
+                            <img src={item.img} alt={item.name}></img>
+                            {item.name}
+                            <div className='add-to-cart-overlay'>Add to Cart</div>
+                        </label>
+                    ))}
                 </div>
-        </div>
+            </div>
+
+            {/* Add to Cart Modal */}
+            <div className="cart-icon" onClick={toggleModal}>
+                🛒
+            </div>
+            {showModal && (
+                <div className="modal" onClick={toggleModal}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>Cart</h2>
+                            <button className="close-button" onClick={toggleModal}>&times;</button>
+                        </div>
+                        <ul>
+                            {cartItems.map((item, index) => (
+                                <li key={index}>{item.name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            )}
+
+            {/* Added Coffee Notification */}
+            {notification && (
+                <div className={`notification ${notification ? 'show' : ''}`}>
+                    {notification}
+                </div>
+            )}
             <footer className='footer-sbb bg-neutral text-white text-center lg:text-center'>
                 <p>© 2024 Step BigBrew</p>
-            </footer> 
+            </footer>
         </>
-    )
+    );
 }
