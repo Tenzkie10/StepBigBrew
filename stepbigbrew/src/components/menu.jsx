@@ -18,13 +18,33 @@ export default function Menu() {
     const [notification, setNotification] = useState('');
 
     const addToCart = (item) => {
-        setCartItems([...cartItems, item]);
+        const existingItemIndex = cartItems.findIndex(cartItem => cartItem.id === item.id);
+        if (existingItemIndex !== -1) {
+            const newCartItems = [...cartItems];
+            newCartItems[existingItemIndex].quantity += 1;
+            newCartItems[existingItemIndex].price += item.price;
+            setCartItems(newCartItems);
+        } else {
+            setCartItems([...cartItems, { ...item, quantity: 1 }]);
+        }
         showNotification(`${item.name} added to cart`);
+    };
+
+    const incrementQuantity = (index) => {
+        const newCartItems = [...cartItems];
+        newCartItems[index].quantity++;
+        setCartItems(newCartItems);
     };
 
     const removeFromCart = (index) => {
         const newCartItems = [...cartItems];
-        newCartItems.splice(index, 1);
+        const item = newCartItems[index];
+        if (item.quantity > 1) {
+            item.quantity--;
+            item.price -= item.price / (item.quantity + 1); 
+        } else {
+            newCartItems.splice(index, 1); 
+        }
         setCartItems(newCartItems);
     };
 
@@ -93,9 +113,12 @@ export default function Menu() {
                             {cartItems.map((item, index) => (
                                 <li key={index} className='cart-item'>
                                     <img src={item.img} alt={item.name} className='cart-item-img' />
-                                    {item.name} - P{item.price}
-                                    <button className='remove-button' onClick={() => removeFromCart(index)}>Remove</button>
-                                </li>
+                                    <div>
+                                        <span>{item.name} - P{item.price}</span>
+                                        <span> Qty: {item.quantity}</span>
+                                    </div>
+                                <button className='remove-button' onClick={() => removeFromCart(index)}>Remove</button>
+                            </li>
                                 
                             ))}
                         </ul>
