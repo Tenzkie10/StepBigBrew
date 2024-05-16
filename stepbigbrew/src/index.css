@@ -376,7 +376,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .contact-overlay {
@@ -417,6 +417,11 @@ textarea {
     background-color: #f4f4f4;
 }
 
+#Mess { 
+    height: 100px; 
+    max-height: 300px; 
+}
+
 button {
     padding: 10px 20px;
     border: none;
@@ -455,27 +460,12 @@ button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 40px;
-    background-color: #F28705;
+    background-color: #171717;
     border: solid white 1px;
     border-radius: 10px;
     width: 80%;
     height: 70%;
+    color: white;
+    font-size: 20px;
     overflow: auto;
-}
-
-.order-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.order-table th,
-.order-table td {
-    border: 1px solid #fff;
-    padding: 8px;
-    text-align: left;
-}
-
-.order-table th {
-    background-color: #F28705;
-    color: #fff;
 }
