@@ -469,3 +469,43 @@ button:hover {
     font-size: 20px;
     overflow: auto;
 }
+
+.userinfo-field {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.userinfo-field label {
+    font-weight: bold;
+}
+
+.userinfo-field input[type="text"],
+.userinfo-field input[type="tel"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.submit-order {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 22px;
+    background-color: #ff9900;
+    color: black;
+    font-size: 24px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-left: auto; 
+    display: block;    
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; 
+}
+

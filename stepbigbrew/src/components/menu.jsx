@@ -13,7 +13,6 @@ export default function Menu() {
         if (existingItemIndex !== -1) {
             const newCartItems = [...cartItems];
             newCartItems[existingItemIndex].quantity += 1;
-            newCartItems[existingItemIndex].price += item.price;
             setCartItems(newCartItems);
         } else {
             setCartItems([...cartItems, { ...item, quantity: 1 }]);
@@ -26,7 +25,6 @@ export default function Menu() {
         const item = newCartItems[index];
         if (item.quantity > 1) {
             item.quantity--;
-            item.price -= item.price / (item.quantity + 1);
         } else {
             newCartItems.splice(index, 1);
         }
@@ -45,7 +43,7 @@ export default function Menu() {
     };
 
     const calculateTotal = () => {
-        return cartItems.reduce((total, item) => total + item.price, 0);
+        return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     };
 
     return (
@@ -83,7 +81,7 @@ export default function Menu() {
                                     <li key={index} className='cart-item'>
                                         <img src={item.img} alt={item.name} className='cart-item-img' />
                                         <div>
-                                            <span>{item.name} - ₱{item.price}</span>
+                                            <span>{item.name} - ₱{item.price * item.quantity}</span>
                                             <span> Qty: {item.quantity}</span>
                                         </div>
                                         <button className='remove-button' onClick={() => removeFromCart(index)}>Remove</button>
