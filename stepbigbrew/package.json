@@ -2,6 +2,7 @@
   "name": "stepbigbrew",
   "private": true,
   "version": "0.0.0",
+  "proxy": "http://localhost:5000",
   "type": "commonjs",
   "scripts": {
     "dev": "vite",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.19",
+    "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0"
