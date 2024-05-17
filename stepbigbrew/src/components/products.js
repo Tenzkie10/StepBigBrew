@@ -14,7 +14,7 @@ export const Products = [
     { id: 'bcoffee', name: 'Black Coffee', img: m_img1, price: 50 },
     { id: 'clatte', name: 'Caffe Latte', img: m_img2, price: 60 },
     { id: 'cmocha', name: 'Caffee Mocha', img: m_img3, price: 50 },
-    { id: 'cchino', name: 'Capochino', img: m_img4, price: 55 },
+    { id: 'ccino', name: 'Cappuccino', img: m_img4, price: 55 },
     { id: 'cmacch', name: 'Caramel Macchiato', img: m_img5, price: 60 },
     { id: 'econpan', name: 'Espresso con panna', img: m_img6, price: 70 },
     { id: 'emacchi', name: 'Espresso Macchiato', img: m_img7, price: 55 },
