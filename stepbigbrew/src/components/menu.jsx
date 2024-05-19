@@ -46,6 +46,8 @@ export default function Menu() {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     };
 
+    const totalItemsInCart = cartItems.reduce((total, item) => total + item.quantity, 0);
+
     return (
         <>
             <div className="menu-page lg:flex-row">
@@ -63,7 +65,7 @@ export default function Menu() {
             </div>
 
             <div className="cart-icon" onClick={toggleModal}>
-                🛒
+                {totalItemsInCart > 0 && <span className="cart-counter">{totalItemsInCart}</span>}🛒 
             </div>
             {showModal && (
                 <div className='modal' onClick={toggleModal}>

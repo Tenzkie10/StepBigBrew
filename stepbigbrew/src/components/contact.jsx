@@ -22,7 +22,7 @@ export default function Contact() {
         axios.post('/api/add_contact', values)
             .then((res) => {
                 console.log('Response from server:', res); // Log the response
-                navigate('/contact');
+                navigate('/');
             })
             .catch((err) => {
                 console.error('Error submitting form:', err); // Log the error
@@ -36,7 +36,6 @@ export default function Contact() {
 
                 <div className='contact-overlay text-white'>
                     <h1>Contact Us</h1>
-                    <Link to='/contact' className='sbtn'></Link>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor='FName'>First Name:</label>

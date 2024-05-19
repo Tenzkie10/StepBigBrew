@@ -26,8 +26,9 @@ db.connect((err) => {
     console.log('Connected to the MySQL database.');
 });
 
+// Contact
 app.post('/add_contact', (req, res) => {
-    console.log('Received request body:', req.body); // Log the request body
+    console.log('Received request body:', req.body);
 
     const sql = "INSERT INTO customer_contacts (firstname, lastname, email, phone_number, message, posted_date) VALUES (?, ?, ?, ?, ?, ?)";
     const values = [
@@ -39,8 +40,8 @@ app.post('/add_contact', (req, res) => {
         new Date()
     ];
 
-    console.log('Executing SQL:', sql); // Log the SQL query
-    console.log('With values:', values); // Log the values
+    console.log('Executing SQL:', sql);
+    console.log('With values:', values);
 
     db.query(sql, values, (err, result) => {
         if (err) {
@@ -48,6 +49,82 @@ app.post('/add_contact', (req, res) => {
             return res.status(500).json({ message: 'Something unexpected has occurred', error: err });
         }
         return res.json({ success: "Contact added successfully" });
+    });
+});
+
+app.get('/contacts', (req, res) => {
+    const sql = "SELECT * FROM customer_contacts";  
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            return res.status(500).json({ message: 'Something unexpected has occurred', error: err });
+        }
+        return res.json(results);  
+    });
+});
+
+app.delete('/contacts/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = "DELETE FROM customer_contacts WHERE contact_id = ?";
+
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            return res.status(500).json({ message: 'Something unexpected has occurred', error: err });
+        }
+        return res.json({ success: "Contact deleted successfully" });
+    });
+});
+
+// Order
+app.post('/place_order', (req, res) => {
+    console.log('Received request body:', req.body);
+
+    const sql = "INSERT INTO customer_order (fullname, phone_number, address, order_date, order_detail) VALUES (?, ?, ?, ?, ?)";
+    const values = [
+        req.body.fullname,
+        req.body.phone_number,
+        req.body.address,
+        new Date(),
+        JSON.stringify(req.body.order_items)
+    ];
+
+    console.log('Executing SQL:', sql);
+    console.log('With values:', values);
+
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            return res.status(500).json({ message: 'Something unexpected has occurred', error: err });
+        }
+        return res.json({ success: "Order added successfully" });
+    });
+});
+
+
+app.get('/orders', (req, res) => {
+    const sql = "SELECT * FROM customer_order";  
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            return res.status(500).json({ message: 'Something unexpected has occurred', error: err });
+        }
+        return res.json(results);  
+    });
+});
+
+app.delete('/orders/:id', (req, res) => {
+    const { id } = req.params;
+    const sql = "DELETE FROM customer_order WHERE order_id = ?";
+
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            console.error('Error executing query:', err);
+            return res.status(500).json({ message: 'Something unexpected has occurred', error: err });
+        }
+        return res.json({ success: "Contact deleted successfully" });
     });
 });
 

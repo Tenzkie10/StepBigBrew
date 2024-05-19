@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Reviews</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="reviews.html">Contact Review</a>
+        <a href="order_reviews.html">Order Reviews</a>
+    </div>
+    <div class="container">
+        <h1>Customer Orders</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Full Name</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>Order Date</th>
+                    <th>Order Details</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="orders-table-body">
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+    
+        async function fetchOrders() {
+            try {
+                const response = await fetch('http://localhost:5000/orders');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const orders = await response.json();
+                const tableBody = document.getElementById('orders-table-body');
+
+                tableBody.innerHTML = '';
+
+                orders.forEach(order => {
+                    const orderDetails = JSON.parse(order.order_detail).map(item => {
+                        return `${item.name} (₱${item.price} x ${item.quantity})`;
+                    }).join(', ');
+
+                    const row = document.createElement('tr');
+
+                    row.innerHTML = `
+                        <td>${order.order_id}</td>
+                        <td>${order.fullname}</td>
+                        <td>${order.phone_number}</td>
+                        <td>${order.address}</td>
+                        <td>${new Date(order.order_date).toLocaleString()}</td>
+                        <td>${orderDetails}</td>
+                        <td><button class="delete-btn" onclick="deleteOrder(${order.order_id})">Delete</button></td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
+
+        async function deleteOrder(orderId) {
+            try {
+                const response = await fetch(`http://localhost:5000/orders/${orderId}`, {
+                    method: 'DELETE'
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                
+                fetchOrders();
+            } catch (error) {
+                console.error('There was a problem with the delete operation:', error);
+            }
+        }
+
+        
+        window.onload = fetchOrders;
+    </script>
+</body>
+</html>

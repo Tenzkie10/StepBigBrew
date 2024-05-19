@@ -260,6 +260,9 @@
     z-index: 1000;
 }
 
+.cart-counter {
+    font-size: 23px;   
+}
 .modal {
     position: fixed;
     top: 0;
@@ -422,7 +425,7 @@ textarea {
     max-height: 300px; 
 }
 
-button {
+.sbtn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -432,7 +435,7 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.sbtn:hover {
     background-color: #fb923c;
 }
 
@@ -504,8 +507,26 @@ button:hover {
     display: block;    
 }
 
+.submit-order:hover {
+    background-color: #fb923c;
+}
 .button-container {
     display: flex;
     justify-content: flex-end; 
 }
 
+.go-backb {
+    font-size: 22px;
+    font-weight: 800;
+    background-color: #ff9900;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 22px;
+    margin-right: auto; 
+    color: black;
+    
+}
+
+.go-backb:hover {
+    background-color: #fb923c;
+}
