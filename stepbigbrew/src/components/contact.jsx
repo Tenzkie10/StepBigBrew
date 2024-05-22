@@ -14,9 +14,23 @@ export default function Contact() {
         message: '',
     });
 
+    const [errors, setErrors] = useState({
+        phoneNumber: '',
+    }); // Initialize errors state
+
+    function validatePhoneNumber(phone_Number) {
+        const phoneRegex = /^09\d{9}$/;
+        return phoneRegex.test(phone_Number);
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
         
+        if (!validatePhoneNumber(values.phoneNumber)) {
+            setErrors({ phoneNumber: '* Phone number must start with "09" and contain 11 digits.' }); // Set error message
+            return;
+        }
+
         console.log('Submitting form with values:', values); // Log form values
 
         axios.post('/api/add_contact', values)
@@ -50,8 +64,9 @@ export default function Contact() {
                             <input type='email' id='Email' name='email' maxLength={320} required onChange={(e) => setValues({ ...values, email: e.target.value })} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor='PNum'>Phone Number:</label>
+                            <label htmlFor='PNum'>Phone Number (+63):</label>
                             <input type='tel' id='PNum' name='phoneNumber' maxLength={11} pattern="[0-9]{11}" required onChange={(e) => setValues({ ...values, phoneNumber: e.target.value })} />
+                            {errors.phoneNumber && <div className='error'>{errors.phoneNumber}</div>}
                         </div>
                         <div className="form-group">
                             <label htmlFor='Mess'>Message:</label>

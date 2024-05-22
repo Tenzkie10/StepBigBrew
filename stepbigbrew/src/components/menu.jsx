@@ -31,6 +31,14 @@ export default function Menu() {
         setCartItems(newCartItems);
     };
 
+    const addFromCart = (index) => {
+        const newCartItems = [...cartItems];
+        const item = newCartItems[index];
+        item.quantity++; 
+        setCartItems(newCartItems);
+    };
+    
+
     const toggleModal = () => {
         setShowModal(!showModal);
     };
@@ -86,14 +94,15 @@ export default function Menu() {
                                             <span>{item.name} - ₱{item.price * item.quantity}</span>
                                             <span> Qty: {item.quantity}</span>
                                         </div>
-                                        <button className='remove-button' onClick={() => removeFromCart(index)}>Remove</button>
+                                        <button className='add-button' onClick={() => addFromCart(index)}>+</button>
+                                        <button className='remove-button' onClick={() => removeFromCart(index)}>-</button>
                                     </li>
                                 ))}
                             </ul>
                         )}
                         <div className='total'><hr></hr>Total: ₱{calculateTotal()}
                             <Link to="/order">
-                                <button className='place-order-button'>Review Order</button>
+                                <button className='place-order-button'>Check Out Order</button>
                             </Link>
                         </div>
                     </div>

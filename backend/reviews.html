@@ -31,6 +31,14 @@
         </table>
     </div>
 
+    <!-- Modal -->
+    <div id="message-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
     <script>
         async function fetchContacts() {
             try {
@@ -52,9 +60,12 @@
                         <td>${contact.lastname}</td>
                         <td>${contact.email}</td>
                         <td>${contact.phone_number}</td>
-                        <td>${contact.message}</td>
+                        <td>${contact.message.substring(0, 30)}...</td>
                         <td>${new Date(contact.posted_date).toLocaleString()}</td>
-                        <td><button class="delete-btn" onclick="deleteContact(${contact.contact_id})">Delete</button></td>
+                        <td>
+                            <button class="view-btn" onclick="viewMessage('${contact.message}')">View</button>
+                            <button class="delete-btn" onclick="deleteContact(${contact.contact_id})">Delete</button>
+                        </td>
                     `;
 
                     tableBody.appendChild(row);
@@ -62,6 +73,13 @@
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
+        }
+
+        function viewMessage(message) {
+            const modal = document.getElementById('message-modal');
+            const modalMessage = document.getElementById('modal-message');
+            modalMessage.textContent = message;
+            modal.style.display = 'block';
         }
 
         async function deleteContact(contactId) {
@@ -79,6 +97,19 @@
         }
 
         window.onload = fetchContacts;
+
+        // Close the modal when the close button is clicked
+        document.querySelector('.close-btn').onclick = function() {
+            document.getElementById('message-modal').style.display = 'none';
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('message-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>

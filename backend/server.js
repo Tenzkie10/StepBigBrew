@@ -81,11 +81,12 @@ app.delete('/contacts/:id', (req, res) => {
 app.post('/place_order', (req, res) => {
     console.log('Received request body:', req.body);
 
-    const sql = "INSERT INTO customer_order (fullname, phone_number, address, order_date, order_detail) VALUES (?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO customer_order (fullname, phone_number, address, payment_mode, order_date, order_detail) VALUES (?, ?, ?, ?, ?, ?)";
     const values = [
         req.body.fullname,
         req.body.phone_number,
         req.body.address,
+        req.body.payment_mode,
         new Date(),
         JSON.stringify(req.body.order_items)
     ];
